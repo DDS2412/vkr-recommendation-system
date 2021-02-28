@@ -16,7 +16,7 @@ import vkr.configurations.DownloadConfigurationProperties;
 @EnableConfigurationProperties(DownloadConfigurationProperties.class)
 @EnableAsync
 public class SpringApplicationDataloader {
-    public static void main(String[] args) { SpringApplication.run(SpringApplicationDataloader.class); }
+    public static void main(String[] args) { SpringApplication.run(SpringApplicationDataloader.class, args); }
 
     @Bean
     public WebClient webClient() { return WebClient.create(); }
