@@ -1,0 +1,42 @@
+{
+  "groups": [
+    {
+      "name": "vkr",
+      "type": "vkr.configurations.ColdStartConfiguration",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    }
+  ],
+  "properties": [
+    {
+      "name": "vkr.cold-start-data-path",
+      "type": "java.lang.String",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    },
+    {
+      "name": "vkr.cold-start-events-count-at-page",
+      "type": "java.lang.Integer",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    },
+    {
+      "name": "vkr.cold-start-events-count-page",
+      "type": "java.lang.Integer",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    },
+    {
+      "name": "vkr.cold-start-events-interval",
+      "type": "java.lang.Integer",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    },
+    {
+      "name": "vkr.cold-start-questions",
+      "type": "java.lang.String[]",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    },
+    {
+      "name": "vkr.cold-start-user-answers-output-file",
+      "type": "java.lang.String",
+      "sourceType": "vkr.configurations.ColdStartConfiguration"
+    }
+  ],
+  "hints": []
+}

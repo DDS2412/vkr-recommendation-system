@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/domain/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/dataloader/src/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/dataloader/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/coldstart_service/src/main/java" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

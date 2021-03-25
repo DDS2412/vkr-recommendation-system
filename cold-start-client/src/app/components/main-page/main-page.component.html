@@ -1,0 +1,14 @@
+<div>
+  <div *ngIf="surveyMode; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div class="container">
+      <div class="row justify-content-center">
+        <h3 class="mat-h2">Огромное спасибо, что согласились пройти данный опрос!</h3>
+      </div>
+      <div class="row justify-content-center">
+        <button mat-raised-button color="primary"  (click)="startSurvey()">Начать опрос!</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #elseBlock><button mat-raised-button color="primary"  (click)="getNextQuestion()">Следующий вопрос!</button></ng-template>
+</div>

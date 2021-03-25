@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/dataloader/pom.xml" />
         <option value="$PROJECT_DIR$/domain/pom.xml" />
+        <option value="$PROJECT_DIR$/coldstart_service/pom.xml" />
       </list>
     </option>
   </component>
