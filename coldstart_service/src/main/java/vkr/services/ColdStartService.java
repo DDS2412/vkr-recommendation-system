@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import vkr.configurations.ColdStartConfiguration;
 import vkr.dto.ColdStartAnswer;
 import vkr.dto.ColdStartEventInfoDto;
+import vkr.dto.ColdStartEventsDto;
 import vkr.exceptions.EventNotFundException;
 import vkr.exceptions.WrongFavoriteIdException;
 import vkr.models.ColdStartUserAnswer;
@@ -37,7 +38,7 @@ public class ColdStartService {
         this.csvWriterService = csvWriterService;
     }
 
-    public List<ColdStartEventInfoDto> getColdStartEvents(){
+    public ColdStartEventsDto getColdStartEvents(){
         LocalDate currentDate = LocalDate.now();
         Integer nElements = coldStartConfiguration.getColdStartEventsCountAtPage() * coldStartConfiguration.getColdStartEventsCountPage();
 
@@ -54,7 +55,16 @@ public class ColdStartService {
 
         int nActualPages = events.size() / coldStartConfiguration.getColdStartEventsCountAtPage();
 
-        return events.subList(0, nActualPages * coldStartConfiguration.getColdStartEventsCountAtPage());
+        return new ColdStartEventsDto(
+                events.subList(0, nActualPages * coldStartConfiguration.getColdStartEventsCountAtPage()),
+                coldStartConfiguration.getColdStartEventsCountAtPage(),
+                nActualPages);
+    }
+
+    public void setUserAnswersForColdStart(List<ColdStartAnswer> coldStartAnswers, Integer userId) throws WrongFavoriteIdException, EventNotFundException {
+        for(ColdStartAnswer answer : coldStartAnswers){
+            setUserAnswerForColdStart(answer, userId);
+        }
     }
 
     public void setUserAnswerForColdStart(ColdStartAnswer coldStartAnswers, Integer userId) throws EventNotFundException, WrongFavoriteIdException {

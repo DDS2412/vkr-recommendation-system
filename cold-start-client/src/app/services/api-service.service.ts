@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators';
 import {Observable, throwError} from 'rxjs';
-import {ColdStartEventInfoDto} from '../models/cold.start.event.info.dto';
+import {ColdStartEventsDto} from '../models/cold.start.events.dto';
+import {ColdStartAnswerDto} from '../models/cold.start.answer.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,13 @@ export class ApiServiceService {
   }
 
   public getSurveyEvents(): Observable<any>{
-    return this.http.get<ColdStartEventInfoDto[]>(this.URL + '/events')
+    return this.http.get<ColdStartEventsDto>(this.URL + '/events')
       .pipe(map((res) => res || {}), catchError(this.handleError));
+  }
+
+  // tslint:disable-next-line:typedef
+  public setAnswersForSurvey(coldStartAnswers: ColdStartAnswerDto[], userId: number){
+    this.http.post(this.URL + '/all/answers/user/' + userId, coldStartAnswers).subscribe();
   }
 
   // tslint:disable-next-line:typedef

@@ -3,12 +3,18 @@
   <ng-template #thenBlock>
     <div class="container">
       <div class="row justify-content-center">
-        <h3 class="mat-h2">Огромное спасибо, что согласились пройти данный опрос!</h3>
+        <h3 class="mat-h2">
+          Доброго времени суток!<br/>
+          В рамках данного опроса Вам будет предложено выбрать интересные для вас мероприятия. Вся информация собирается анонимно<br/><br/>
+          Проходя данный опрос Вы помогаете в написании дипломной работы, спасибо Вам!</h3>
       </div>
+      <br><br>
       <div class="row justify-content-center">
         <button mat-raised-button color="primary"  (click)="startSurvey()">Начать опрос!</button>
       </div>
     </div>
   </ng-template>
-  <ng-template #elseBlock><button mat-raised-button color="primary"  (click)="getNextQuestion()">Следующий вопрос!</button></ng-template>
+  <ng-template #elseBlock>
+    <app-survey-page [surveyEvents]="surveyEvents" [userId]="userId"></app-survey-page>
+  </ng-template>
 </div>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import vkr.dto.ColdStartAnswer;
 import vkr.dto.ColdStartEventInfoDto;
+import vkr.dto.ColdStartEventsDto;
 import vkr.exceptions.EventNotFundException;
 import vkr.exceptions.WrongFavoriteIdException;
 import vkr.services.ColdStartService;
@@ -23,8 +24,20 @@ public class ColdStartController {
     }
 
     @GetMapping(value = "/events")
-    public ResponseEntity<List<ColdStartEventInfoDto>> getAllEventCategories(){
+    public ResponseEntity<ColdStartEventsDto> getAllEventCategories(){
         return ResponseEntity.ok(coldStartService.getColdStartEvents());
+    }
+
+    @PostMapping(value = "/all/answers/user/{user_id}")
+    public ResponseEntity setUserAnswersForColdStart(@RequestBody List<ColdStartAnswer> coldStartAnswers,
+                                                     @PathVariable("user_id") Integer userId) throws EventNotFundException, WrongFavoriteIdException {
+        try {
+            coldStartService.setUserAnswersForColdStart(coldStartAnswers, userId);
+        } catch (EventNotFundException | WrongFavoriteIdException e){
+            return ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(value = "/answers/user/{user_id}")
