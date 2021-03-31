@@ -1,5 +1,6 @@
 package vkr.services;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import vkr.configurations.ColdStartConfiguration;
 import vkr.dto.ColdStartAnswer;
@@ -93,8 +94,12 @@ public class ColdStartService {
         coldStartUserAnswerRepository.saveAll(coldStartUserAnswers);
     }
 
-    public void saveColdStartAnswers(){
-        csvWriterService.saveColdStartUserAnswerToCSV(coldStartUserAnswerRepository.findAll());
+    public String saveColdStartAnswers(){
+        return csvWriterService.saveColdStartUserAnswerToCSV(coldStartUserAnswerRepository.findAll());
+    }
+
+    public String saveColdStartEvents(){
+        return csvWriterService.saveEventDataToCSV(eventRepository.findAll());
     }
 
     private boolean checkFavoriteEvent(Event event, ColdStartAnswer coldStartAnswers){

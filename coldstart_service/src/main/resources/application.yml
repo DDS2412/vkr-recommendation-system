@@ -35,10 +35,9 @@ spring:
 
 vkr:
   cold-start-user-answers-output-file: "cold_start_data.csv"
+  cold-start-event-output-file: "cold_start_events.csv"
   cold-start-data-path: "/data"
   cold-start-events-interval: 30
   cold-start-events-count-at-page: 3
   cold-start-events-count-page: 10
-  cold-start-questions:
-    - 'Пожалуйста, выберете одно из понравившихся мероприятий'
-    - 'Что вам больше нравится?'
+  bucket-name: dsergachev-vkr-2021

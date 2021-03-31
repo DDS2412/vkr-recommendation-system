@@ -6,8 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 @ConfigurationProperties("vkr")
 public class ColdStartConfiguration {
-    private String[] coldStartQuestions;
-
     private Integer coldStartEventsInterval;
 
     private Integer coldStartEventsCountAtPage;
@@ -16,5 +14,9 @@ public class ColdStartConfiguration {
 
     private String coldStartUserAnswersOutputFile;
 
+    private String coldStartEventOutputFile;
+
     private String coldStartDataPath;
+
+    private String bucketName;
 }
