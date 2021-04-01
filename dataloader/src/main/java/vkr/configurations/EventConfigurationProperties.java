@@ -24,4 +24,7 @@ public class EventConfigurationProperties {
 
     @Getter
     private final String eventTextFormat = "plain";
+
+    @Getter
+    private final Boolean isDownloadImage = false;
 }

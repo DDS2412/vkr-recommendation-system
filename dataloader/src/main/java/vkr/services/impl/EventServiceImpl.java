@@ -92,10 +92,16 @@ public class EventServiceImpl implements EventService {
                                             .setCategories(eventDto.getCategorySlugs().stream().map(eventCategoryRepository::findFirstBySlug).collect(Collectors.toList())));
 
                             for (EventImage eventImage : clonedEvent.getImages()) {
-                                eventImageRepository.save(eventImage
-                                        .setCudagoImage(eventImage.getImage())
-                                        .setImage(fileCompressorService.getCompressedImageFile(eventImage.getImage()))
-                                        .setEvent(clonedEvent));
+                                if (eventConfigurationProperties.getIsDownloadImage()){
+                                    eventImageRepository.save(eventImage
+                                            .setCudagoImage(eventImage.getImage())
+                                            .setImage(fileCompressorService.getCompressedImageFile(eventImage.getImage()))
+                                            .setEvent(clonedEvent));
+                                } else {
+                                    eventImageRepository.save(eventImage
+                                            .setCudagoImage(eventImage.getImage())
+                                            .setEvent(clonedEvent));
+                                }
                             }
                         }
                     }
