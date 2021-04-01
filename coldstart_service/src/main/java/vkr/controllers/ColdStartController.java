@@ -1,14 +1,15 @@
 package vkr.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import vkr.dto.ColdStartAnswer;
-import vkr.dto.ColdStartEventInfoDto;
 import vkr.dto.ColdStartEventsDto;
 import vkr.exceptions.EventNotFundException;
 import vkr.exceptions.WrongFavoriteIdException;
+import vkr.services.AWSDataService;
 import vkr.services.ColdStartService;
 
 import java.util.List;
@@ -18,9 +19,15 @@ import java.util.List;
 @CrossOrigin(allowCredentials = "true")
 public class ColdStartController {
     private final ColdStartService coldStartService;
+    private final AWSDataService awsDataService;
+    private final String password;
 
-    public ColdStartController(ColdStartService coldStartService) {
+    public ColdStartController(ColdStartService coldStartService,
+                               AWSDataService awsDataService,
+                               String password) {
         this.coldStartService = coldStartService;
+        this.awsDataService = awsDataService;
+        this.password = password;
     }
 
     @GetMapping(value = "/events")
@@ -53,9 +60,13 @@ public class ColdStartController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(value = "/save")
-    public ResponseEntity saveUserAnswers(){
-        coldStartService.saveColdStartAnswers();
-        return ResponseEntity.ok().build();
+    @GetMapping(value = "/save/{password}")
+    public ResponseEntity saveUserAnswers(@PathVariable("password") String password){
+        if (password.equals(this.password)){
+            awsDataService.saveColdStartDataToAmazonS3();
+            return ResponseEntity.ok().build();
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

@@ -20,6 +20,11 @@ public class SpringApplicationColdStart {
     public static void main(String[] args) { SpringApplication.run(SpringApplicationColdStart.class, args); }
 
     @Bean
+    public String getPassword(){
+        return Optional.of(System.getenv("PASSWORD")).orElse("");
+    }
+
+    @Bean
     public AmazonS3 getS3Client() {
         AWSCredentials credentials = new BasicAWSCredentials(
                 Optional.of(System.getenv("ACCESS_KEY")).orElse(""),
