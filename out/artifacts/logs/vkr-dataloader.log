@@ -1,0 +1,2 @@
+2021-04-01 09:29:45,069 INFO v.SpringApplicationDataloader [main] Starting SpringApplicationDataloader on ip-172-31-45-212 with PID 37030 (/home/ubuntu/vkr-recommendation-system/out/artifacts/dataloader.jar started by ubuntu in /home/ubuntu/vkr-recommendation-system/out/artifacts)
+2021-04-01 09:29:45,080 INFO v.SpringApplicationDataloader [main] No active profile set, falling back to default profiles: default
