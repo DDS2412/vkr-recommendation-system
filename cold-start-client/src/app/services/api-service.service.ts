@@ -12,7 +12,7 @@ export class ApiServiceService {
   public URL: string;
 
   constructor(private http: HttpClient) {
-    this.URL = 'http://localhost:8082/vkr/coldstart';
+    this.URL = 'http://3.65.178.42:8082/vkr/coldstart';
   }
 
   public getSurveyEvents(): Observable<any>{

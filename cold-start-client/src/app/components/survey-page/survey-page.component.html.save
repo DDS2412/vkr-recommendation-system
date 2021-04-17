@@ -1,0 +1,46 @@
+<div *ngIf="isEndOfSurvey; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h3 class="mat-h2">Огромное спасибо, что согласились пройти данный опрос!<br/>Пожалуйста, если Вас не затруднит, попросите его пройти своих друзей:)</h3>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="container">
+    <div class="row justify-content-end">
+	     <div class="col-md-auto"> Вам осталось {{surveyEvents.npages - currentPage}} из {{surveyEvents.npages}} страниц Вам осталось 10 из 10 
+      страниц </div>
+    </div>     <br/>
+    <div class="row justify-content-center">
+      <h3 class="mat-h2">{{currentQuestion}}</h3>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <mat-list role="list">
+        <mat-list-item *ngFor="let event of currentEvents;let i = index"><p class="text-break">{{i+1}}) {{event.title}}</p></mat-list-item>
+      </mat-list>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+      <mat-form-field appearance="fill" style="width: 40em">
+        <mat-label>Понравившееся мероприятие</mat-label>
+        <mat-select [(value)]="selectedEvent" [formControl]="selectFormControl" required>
+          <mat-option label="--Выберите одно из мероприятий --"></mat-option>
+          <mat-option *ngFor="let event of currentEvents" value="{{event.id}}">{{event.title}}</mat-option>
+          <mat-option value="-1">Никакое!</mat-option>
+        </mat-select>
+        <mat-error *ngIf="selectFormControl.hasError('required')">Пожалуйста, выберите мероприятие</mat-error>
+      </mat-form-field>
+    </div>
+    <br>
+    <div *ngIf="selectedEvent; then nextQuestion"></div>
+    <ng-template #nextQuestion>
+      <div class="container">
+        <div class="row justify-content-center">
+          <button mat-raised-button color="primary"  (click)="getNextQuestion()">Следующий вопрос!</button>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</ng-template>
